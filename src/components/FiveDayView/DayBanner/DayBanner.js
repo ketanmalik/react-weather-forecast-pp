@@ -8,7 +8,9 @@ const dayBanner = props => {
   }
   return (
     <a className={classes.Links} onClick={() => props.clicked(props.value)}>
-      <div className={wrapperClass}>{props.day}</div>
+      <div className={wrapperClass}>
+        <p>{props.day}</p>
+      </div>
     </a>
   );
 };

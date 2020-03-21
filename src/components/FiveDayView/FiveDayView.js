@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SelectedDay from "./SelectedDay/SelectedDay";
 import DayBanner from "./DayBanner/DayBanner";
+import axios from "axios";
 import classes from "./FiveDayView.module.css";
 
 class FiveDayView extends Component {
@@ -14,6 +15,11 @@ class FiveDayView extends Component {
     setTimeout(() => this.setState({ showAnimation: true }), 10);
     this.setDates();
     this.setState({ selectedDay: "Day0" });
+    axios
+      .get(
+        "http://api.openweathermap.org/data/2.5/forecast?id=4930956&APPID=e73382b0a345da45c83279f93d8b4615"
+      )
+      .then(resp => console.log(resp));
   }
 
   setDates = () => {

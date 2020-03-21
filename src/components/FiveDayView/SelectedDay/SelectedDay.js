@@ -10,8 +10,10 @@ const selectedDay = props => {
         <span> {day[1] + " " + day[2]} - Sunny </span>
         <img src={sunny} alt="sunny" />
       </h1>
-      High - 24<sup>o</sup>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low - 18<sup>o</sup>
+      <b>
+        High - 24<sup>o</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Low - 18<sup>o</sup>
+      </b>
     </div>
   );
 };

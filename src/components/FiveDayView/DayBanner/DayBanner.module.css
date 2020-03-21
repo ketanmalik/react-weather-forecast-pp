@@ -4,6 +4,7 @@
   background: black;
   margin-top: 30px;
   color: #f09100;
+  width: 70%;
 }
 
 .Wrapper:hover {
@@ -19,5 +20,16 @@
   transform: skew(20deg);
   background-color: #f09100;
   margin-top: 30px;
-  color: red;
+  color: black;
+  width: 70%;
+}
+
+.Wrapper p {
+  font-weight: bold;
+  padding: 20px;
+}
+
+.Active p {
+  font-weight: bold;
+  padding: 20px;
 }
