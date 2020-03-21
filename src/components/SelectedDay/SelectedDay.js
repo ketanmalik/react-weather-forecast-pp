@@ -1,5 +1,5 @@
 import React from "react";
-import sunny from "../../../assets/images/sunny.png";
+import sunny from "../../assets/images/sunny.png";
 import classes from "./SelectedDay.module.css";
 
 const selectedDay = props => {

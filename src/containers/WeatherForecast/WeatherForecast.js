@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import SelectedDay from "./SelectedDay/SelectedDay";
-import DayBanner from "./DayBanner/DayBanner";
+import SelectedDay from "../../components/SelectedDay/SelectedDay";
+import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
-import classes from "./FiveDayView.module.css";
+import classes from "./WeatherForecast.module.css";
 
-class FiveDayView extends Component {
+class WeatherForecast extends Component {
   state = {
     showAnimation: false,
     selectedDay: null,
-    dates: null
+    dates: null,
+    weatherInfo: null,
+    err: null
   };
 
   componentDidMount() {
@@ -19,7 +21,8 @@ class FiveDayView extends Component {
       .get(
         "http://api.openweathermap.org/data/2.5/forecast?id=4930956&APPID=e73382b0a345da45c83279f93d8b4615"
       )
-      .then(resp => console.log(resp));
+      .then(resp => this.setState({ weatherInfo: resp.data.list }))
+      .catch(err => this.setState({ err: err }));
   }
 
   setDates = () => {
@@ -65,4 +68,4 @@ class FiveDayView extends Component {
   }
 }
 
-export default FiveDayView;
+export default WeatherForecast;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Layout from "./components/Layout/Layout";
-import FiveDayView from "./components/FiveDayView/FiveDayView";
+import WeatherForecast from "./containers/WeatherForecast/WeatherForecast";
 import "./App.css";
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <FiveDayView />
+          <WeatherForecast />
         </Layout>
       </div>
     );
