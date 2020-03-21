@@ -26,7 +26,7 @@ class Toolbar extends Component {
     return (
       <div className={classes.Toolbar}>
         <img style={styles.logo} src={logo} alt="Logo" />
-        <h2 style={styles.heading}>Weather Forecast Application</h2>
+        <h2 style={styles.heading}>Weather Forecast in Boston</h2>
       </div>
     );
   }
