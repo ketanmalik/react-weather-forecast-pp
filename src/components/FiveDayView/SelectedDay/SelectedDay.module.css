@@ -1,0 +1,11 @@
+.Wrapper {
+  margin-bottom: 50px;
+}
+
+.Wrapper h1 {
+  margin-bottom: 0;
+}
+
+.Wrapper img {
+  height: 100px;
+}

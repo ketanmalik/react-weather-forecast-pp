@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+.Wrapper {
+  font-family: "Montserrat";
+  animation: slide 2s;
+  animation-fill-mode: forwards;
+  padding: 10px 0px 0px 50px;
+  width: 50%;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    margin-left: 30px;
+    opacity: 1;
+  }
+}
+
+.Wrapper h1 {
+  font-size: 60px;
+}

@@ -1,0 +1,20 @@
+.Toolbar {
+  background-color: black;
+  height: 70px;
+  padding: 10px;
+  color: #f09100;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+}
+
+.Toolbar img {
+  height: 100%;
+  margin-right: 10px;
+}
