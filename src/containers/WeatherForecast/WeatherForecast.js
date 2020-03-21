@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import Aux from "../../hoc/Aux/Aux";
 import SelectedDay from "../../components/SelectedDay/SelectedDay";
 import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
+import DetailedView from "../../components/DetailedView/DetailedView";
 import classes from "./WeatherForecast.module.css";
 
 class WeatherForecast extends Component {
@@ -59,10 +61,15 @@ class WeatherForecast extends Component {
     }
     return this.state.showAnimation ? (
       this.state.selectedDay ? (
-        <div className={classes.Wrapper}>
-          <SelectedDay day={this.state.dates[this.state.selectedDay]} />
-          {dayBanner}
-        </div>
+        <Aux>
+          <div className={classes.LeftWrapper}>
+            <SelectedDay day={this.state.dates[this.state.selectedDay]} />
+            {dayBanner}
+          </div>
+          <div className={classes.RightWrapper}>
+            <DetailedView />
+          </div>
+        </Aux>
       ) : null
     ) : null;
   }
