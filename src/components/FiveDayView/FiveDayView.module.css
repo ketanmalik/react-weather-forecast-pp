@@ -5,6 +5,7 @@
   animation: slide 2s;
   animation-fill-mode: forwards;
   padding: 10px 0px 0px 50px;
+  width: 50%;
 }
 
 @keyframes slide {

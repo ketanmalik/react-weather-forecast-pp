@@ -1,0 +1,11 @@
+.Wrapper {
+  height: 60px;
+  transform: skew(20deg);
+  background: black;
+  margin-top: 30px;
+  color: #f09100;
+}
+
+.Wrapper:hover {
+  background-color: slategray;
+}
