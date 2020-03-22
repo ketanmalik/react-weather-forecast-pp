@@ -23,7 +23,10 @@ class WeatherForecast extends Component {
       .get(
         "http://api.openweathermap.org/data/2.5/forecast?id=4930956&APPID=e73382b0a345da45c83279f93d8b4615"
       )
-      .then(resp => this.setState({ weatherInfo: resp.data.list }))
+      .then(resp => {
+        console.log(resp);
+        this.setState({ weatherInfo: resp.data.list });
+      })
       .catch(err => this.setState({ err: err }));
   }
 
@@ -60,14 +63,22 @@ class WeatherForecast extends Component {
       });
     }
     return this.state.showAnimation ? (
-      this.state.selectedDay ? (
+      this.state.selectedDay && this.state.weatherInfo ? (
         <Aux>
           <div className={classes.LeftWrapper}>
             <SelectedDay day={this.state.dates[this.state.selectedDay]} />
             {dayBanner}
           </div>
           <div className={classes.RightWrapper}>
-            <DetailedView />
+            <h1>3-Hour Forecast</h1>
+            <div style={{ height: "30em", overflow: "auto" }}>
+              <DetailedView info={this.state.weatherInfo} />
+              <DetailedView info={this.state.weatherInfo} />
+              <DetailedView info={this.state.weatherInfo} />
+              <DetailedView info={this.state.weatherInfo} />
+              <DetailedView info={this.state.weatherInfo} />
+              <DetailedView info={this.state.weatherInfo} />
+            </div>
           </div>
         </Aux>
       ) : null

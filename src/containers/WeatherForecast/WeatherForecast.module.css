@@ -9,12 +9,28 @@
   width: 50%;
 }
 
+.LeftWrapper h1 {
+  font-size: 60px;
+}
+
 .RightWrapper {
   font-family: "Montserrat";
   float: right;
-  padding: 90px 200px 0px 50px;
+  padding: 60px 150px 0px 50px;
   animation: slide-right 2s;
   animation-fill-mode: forwards;
+}
+
+.RightWrapper h1 {
+  font-size: 60px;
+}
+
+.RightWrapper hr {
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  color: #333; /* old IE */
+  background-color: #333; /* Modern Browsers */
 }
 
 @keyframes slide-left {
@@ -33,11 +49,6 @@
   }
   100% {
     margin-right: 30px;
-    padding: 90px 280px 0px 50px;
     opacity: 1;
   }
-}
-
-.LeftWrapper h1 {
-  font-size: 60px;
 }
