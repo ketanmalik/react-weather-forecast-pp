@@ -1,0 +1,20 @@
+.Time {
+  font-weight: bold;
+}
+
+.Wrapper img {
+  height: 30px;
+  margin-right: 4em;
+}
+
+.Temperature {
+  border-radius: 20px;
+  background-color: #6f6e6e;
+  padding: 6px 15px 6px 15px;
+}
+
+.Wrapper:after {
+  content: " ";
+  display: block;
+  border-bottom: 2px solid #6f6e6e;
+}

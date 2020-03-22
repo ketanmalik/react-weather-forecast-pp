@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+.LeftWrapper {
+  font-family: "Montserrat";
+  float: left;
+  padding: 10px 0px 0px 50px;
+  animation: slide-left 2s;
+  animation-fill-mode: forwards;
+  width: 50%;
+}
+
+.LeftWrapper h1 {
+  font-size: 60px;
+}
+
+.RightWrapper {
+  font-family: "Montserrat";
+  float: right;
+  padding: 60px 150px 0px 50px;
+  animation: slide-right 2s;
+  animation-fill-mode: forwards;
+}
+
+.RightWrapper h1 {
+  font-size: 60px;
+}
+
+.RightWrapper hr {
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  color: #333; /* old IE */
+  background-color: #333; /* Modern Browsers */
+}
+
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    margin-left: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    margin-right: 30px;
+    opacity: 1;
+  }
+}
