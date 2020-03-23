@@ -4,13 +4,14 @@
 
 .Wrapper img {
   height: 30px;
-  margin-right: 4em;
+  margin-right: 2em;
 }
 
 .Temperature {
   border-radius: 20px;
   background-color: #6f6e6e;
   padding: 6px 15px 6px 15px;
+  margin-right: 2em;
 }
 
 .Wrapper:after {

@@ -3,10 +3,10 @@
 .LeftWrapper {
   font-family: "Montserrat";
   float: left;
-  padding: 10px 0px 0px 50px;
+  padding: 10px 0px 0px 90px;
   animation: slide-left 2s;
   animation-fill-mode: forwards;
-  width: 50%;
+  width: 40%;
 }
 
 .LeftWrapper h1 {
@@ -16,7 +16,7 @@
 .RightWrapper {
   font-family: "Montserrat";
   float: right;
-  padding: 60px 150px 0px 50px;
+  padding: 60px 100px 0px 50px;
   animation: slide-right 2s;
   animation-fill-mode: forwards;
 }
@@ -52,3 +52,9 @@
     opacity: 1;
   }
 }
+
+/* @media screen and (max-width: 1200px) {
+  .LeftWrapper {
+    background-color: orange;
+  }
+} */

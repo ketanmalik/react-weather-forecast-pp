@@ -12,13 +12,13 @@ class WeatherForecast extends Component {
     selectedDay: null,
     dates: null,
     weatherInfo: null,
-    err: null
+    err: null,
+    briefWeatherInfo: null,
+    safeToProceed: false
   };
 
   componentDidMount() {
     setTimeout(() => this.setState({ showAnimation: true }), 10);
-    this.setDates();
-    this.setState({ selectedDay: "Day0" });
     axios
       .get(
         "http://api.openweathermap.org/data/2.5/forecast?id=4930956&APPID=e73382b0a345da45c83279f93d8b4615"
@@ -26,12 +26,17 @@ class WeatherForecast extends Component {
       .then(resp => {
         console.log(resp);
         this.setState({ weatherInfo: resp.data.list });
+        this.setDates();
+        this.setState({ selectedDay: "Day0" });
+        this.setBriefWeatherInfo();
+        this.setState({ safeToProceed: true });
       })
       .catch(err => this.setState({ err: err }));
   }
 
   setDates = () => {
-    const today = new Date();
+    const dateArr = this.state.weatherInfo[0].dt_txt.split(" ")[0].split("-");
+    const today = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
     var futureDates = { ...this.state.dates };
     var tempDate = null;
     for (var i = 0; i < 5; i++) {
@@ -44,6 +49,39 @@ class WeatherForecast extends Component {
 
   dayHandler = day => {
     this.setState({ selectedDay: day });
+  };
+
+  setBriefWeatherInfo = () => {
+    let briefWeatherInfo = { ...this.state.briefWeatherInfo };
+    let weatherInfo = { ...this.state.weatherInfo };
+    let dateArr = weatherInfo[0].dt_txt.split(" ")[0].split("-");
+    let date = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
+
+    let tempDateArr = null;
+    let tempDate = null;
+    let i = 0;
+    let updated = false;
+    Object.keys(weatherInfo).map(key => {
+      tempDateArr = weatherInfo[key].dt_txt.split(" ")[0].split("-");
+      tempDate = new Date(tempDateArr[0], tempDateArr[1] - 1, tempDateArr[2]);
+      if (date.toDateString() === tempDate.toDateString()) {
+        if (!updated) {
+          briefWeatherInfo["Day" + i] =
+            weatherInfo[key].main["temp_min"] +
+            "," +
+            weatherInfo[key].main["temp_max"] +
+            "," +
+            weatherInfo[key].weather[0].main;
+          updated = true;
+        }
+      } else {
+        date = new Date(tempDateArr[0], tempDateArr[1] - 1, tempDateArr[2]);
+        i += 1;
+        updated = false;
+      }
+      return null;
+    });
+    this.setState({ briefWeatherInfo: briefWeatherInfo });
   };
 
   render() {
@@ -62,22 +100,43 @@ class WeatherForecast extends Component {
         );
       });
     }
+
+    let detailedView = null;
+    if (this.state.safeToProceed) {
+      const weatherInfo = { ...this.state.weatherInfo };
+      const dates = { ...this.state.dates };
+      const selectedDay = this.state.selectedDay;
+      detailedView = Object.keys(weatherInfo).map(key => {
+        const dateArr = weatherInfo[key].dt_txt.split(" ")[0].split("-");
+        const date = new Date(
+          dateArr[0],
+          dateArr[1] - 1,
+          dateArr[2]
+        ).toDateString();
+        if (date === dates[selectedDay]) {
+          return <DetailedView info={weatherInfo[key]} key={key} />;
+        }
+        return null;
+      });
+    }
+
     return this.state.showAnimation ? (
-      this.state.selectedDay && this.state.weatherInfo ? (
+      this.state.selectedDay &&
+      this.state.weatherInfo &&
+      this.state.safeToProceed ? (
         <Aux>
           <div className={classes.LeftWrapper}>
-            <SelectedDay day={this.state.dates[this.state.selectedDay]} />
+            <SelectedDay
+              day={this.state.dates[this.state.selectedDay]}
+              info={this.state.briefWeatherInfo}
+              val={this.state.selectedDay}
+            />
             {dayBanner}
           </div>
           <div className={classes.RightWrapper}>
             <h1>3-Hour Forecast</h1>
             <div style={{ height: "30em", overflow: "auto" }}>
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
+              {detailedView}
             </div>
           </div>
         </Aux>
