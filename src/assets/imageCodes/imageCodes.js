@@ -1,3 +1,7 @@
+import sunny from "../images/sunny.png";
+import rainy from "../images/rainy.png";
+import cloudy from "../images/cloudy.jpeg";
+
 const getImageCode = main => {
   let code = "http://openweathermap.org/img/wn/";
   switch (main) {
@@ -8,7 +12,8 @@ const getImageCode = main => {
       code += "09d@2x.png";
       break;
     case "Rain":
-      code += "10d@2x.png";
+      code = { rainy }["rainy"];
+      // code += "10d@2x.png";
       break;
     case "Snow":
       code += "13d@2x.png";
@@ -25,10 +30,12 @@ const getImageCode = main => {
       code += "50d@2x.png";
       break;
     case "Clear":
-      code += "01d@2x.png";
+      code = { sunny }["sunny"];
+      // code += "01d@2x.png";
       break;
     case "Clouds":
-      code += "02d@2x.png";
+      code = { cloudy }["cloudy"];
+      // code += "02d@2x.png";
       break;
     default:
       code += "50d@2x.png";

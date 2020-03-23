@@ -54,17 +54,37 @@ class WeatherForecast extends Component {
   setBriefWeatherInfo = () => {
     let briefWeatherInfo = { ...this.state.briefWeatherInfo };
     let weatherInfo = { ...this.state.weatherInfo };
-    let ptr = 0;
-    for (var i = 0; i < 5; i++) {
-      briefWeatherInfo["Day" + i] =
-        weatherInfo[ptr].main["temp_min"] +
-        "," +
-        weatherInfo[ptr].main["temp_max"] +
-        "," +
-        weatherInfo[ptr].weather[0].main;
-      ptr += 8;
-    }
+    let dateArr = weatherInfo[0].dt_txt.split(" ")[0].split("-");
+    let date = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
+
+    let tempDateArr = null;
+    let tempDate = null;
+    let i = 0;
+    let updated = false;
+    Object.keys(weatherInfo).map(key => {
+      tempDateArr = weatherInfo[key].dt_txt.split(" ")[0].split("-");
+      tempDate = new Date(tempDateArr[0], tempDateArr[1] - 1, tempDateArr[2]);
+      if (date.toDateString() === tempDate.toDateString()) {
+        if (!updated) {
+          briefWeatherInfo["Day" + i] =
+            weatherInfo[key].main["temp_min"] +
+            "," +
+            weatherInfo[key].main["temp_max"] +
+            "," +
+            weatherInfo[key].weather[0].main;
+          updated = true;
+          console.log("if", key);
+        }
+      } else {
+        date = new Date(tempDateArr[0], tempDateArr[1] - 1, tempDateArr[2]);
+        i += 1;
+        updated = false;
+        console.log(date.toDateString(), tempDate.toDateString(), i);
+      }
+      return null;
+    });
     this.setState({ briefWeatherInfo: briefWeatherInfo });
+    console.log(briefWeatherInfo);
   };
 
   render() {
@@ -83,6 +103,26 @@ class WeatherForecast extends Component {
         );
       });
     }
+
+    let detailedView = null;
+    if (this.state.safeToProceed) {
+      const weatherInfo = { ...this.state.weatherInfo };
+      const dates = { ...this.state.dates };
+      const selectedDay = this.state.selectedDay;
+      detailedView = Object.keys(weatherInfo).map(key => {
+        const dateArr = weatherInfo[key].dt_txt.split(" ")[0].split("-");
+        const date = new Date(
+          dateArr[0],
+          dateArr[1] - 1,
+          dateArr[2]
+        ).toDateString();
+        if (date === dates[selectedDay]) {
+          return <DetailedView info={weatherInfo[key]} key={key} />;
+        }
+        return null;
+      });
+    }
+
     return this.state.showAnimation ? (
       this.state.selectedDay &&
       this.state.weatherInfo &&
@@ -99,12 +139,7 @@ class WeatherForecast extends Component {
           <div className={classes.RightWrapper}>
             <h1>3-Hour Forecast</h1>
             <div style={{ height: "30em", overflow: "auto" }}>
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
-              <DetailedView info={this.state.weatherInfo} />
+              {detailedView}
             </div>
           </div>
         </Aux>

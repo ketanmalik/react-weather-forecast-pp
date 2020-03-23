@@ -1,7 +1,4 @@
 import React from "react";
-import sunny from "../../assets/images/sunny.png";
-import cloudy from "../../assets/images/cloudy.jpeg";
-import rainy from "../../assets/images/rainy.png";
 
 import getImageCode from "../../assets/imageCodes/imageCodes";
 import classes from "./SelectedDay.module.css";
@@ -12,15 +9,7 @@ const selectedDay = props => {
   let hi = props.info[props.val].split(",")[1];
   let main = props.info[props.val].split(",")[2];
   let imgCode = null;
-  if (main === "Clear") {
-    imgCode = sunny;
-  } else if (main === "Clouds") {
-    imgCode = cloudy;
-  } else if (main === "Rain") {
-    imgCode = rainy;
-  } else {
-    imgCode = getImageCode(main);
-  }
+  imgCode = getImageCode(main);
 
   //Convert Kelvin to Fahrenheit
   lo = ((lo - 273.15) * 1.8 + 32).toFixed(2);
