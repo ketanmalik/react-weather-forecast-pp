@@ -10,3 +10,23 @@
 .Wrapper img {
   height: 100px;
 }
+
+@media screen and (max-width: 465px) {
+  .Wrapper {
+    font-size: 15px;
+  }
+
+  .Wrapper img {
+    height: 55px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Wrapper {
+    font-size: 10px;
+  }
+
+  .Wrapper img {
+    height: 40px;
+  }
+}

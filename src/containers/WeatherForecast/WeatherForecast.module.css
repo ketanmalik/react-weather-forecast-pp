@@ -10,19 +10,19 @@
 }
 
 .LeftWrapper h1 {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .RightWrapper {
   font-family: "Montserrat";
   float: right;
-  padding: 60px 100px 0px 50px;
+  padding: 80px 100px 0px 50px;
   animation: slide-right 2s;
   animation-fill-mode: forwards;
 }
 
 .RightWrapper h1 {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .RightWrapper hr {
@@ -53,8 +53,141 @@
   }
 }
 
-/* @media screen and (max-width: 1200px) {
+@media screen and (min-width: 1246px) and (max-width: 1320px) {
   .LeftWrapper {
-    background-color: orange;
+    padding: 10px 0px 0px 10px;
   }
-} */
+  .RightWrapper {
+    padding: 80px 20px 0px 50px;
+  }
+}
+
+@media screen and (max-width: 1245px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 10px;
+  }
+  .LeftWrapper h1 {
+    font-size: 40px;
+  }
+  .RightWrapper {
+    padding: 80px 20px 0px 50px;
+  }
+  .RightWrapper h1 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1046px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 10px;
+  }
+  .LeftWrapper h1 {
+    font-size: 30px;
+  }
+  .RightWrapper {
+    padding: 80px 20px 0px 50px;
+    width: 45%;
+  }
+  .RightWrapper h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 945px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 10px;
+  }
+  .LeftWrapper h1 {
+    font-size: 30px;
+  }
+  .RightWrapper {
+    padding: 80px 20px 0px 50px;
+    width: 40%;
+  }
+  .RightWrapper h1 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 847px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 10px;
+  }
+  .LeftWrapper h1 {
+    font-size: 25px;
+  }
+  .RightWrapper {
+    padding: 80px 20px 0px 50px;
+    width: 40%;
+  }
+  .RightWrapper h1 {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 801px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 140px;
+    width: 80%;
+  }
+  .LeftWrapper h1 {
+    font-size: 25px;
+  }
+  .RightWrapper {
+    padding: 80px 45px 0px 50px;
+    width: 80%;
+  }
+  .RightWrapper h1 {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 60px;
+    width: 80%;
+  }
+  .LeftWrapper h1 {
+    font-size: 25px;
+  }
+  .RightWrapper {
+    padding: 80px 25px 0px 50px;
+    width: 80%;
+  }
+  .RightWrapper h1 {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 465px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 40px;
+    width: 80%;
+  }
+  .LeftWrapper h1 {
+    font-size: 20px;
+  }
+  .RightWrapper {
+    padding: 80px 25px 0px 50px;
+    width: 80%;
+  }
+  .RightWrapper h1 {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .LeftWrapper {
+    padding: 10px 0px 0px 40px;
+    width: 80%;
+  }
+  .LeftWrapper h1 {
+    font-size: 15px;
+  }
+  .RightWrapper {
+    padding: 80px 25px 0px 50px;
+    font-size: 9px;
+    width: 80%;
+  }
+  .RightWrapper h1 {
+    font-size: 15px;
+  }
+}

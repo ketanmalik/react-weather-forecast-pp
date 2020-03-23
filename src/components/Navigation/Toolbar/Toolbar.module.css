@@ -18,3 +18,12 @@
   height: 100%;
   margin-right: 10px;
 }
+
+@media screen and (max-width: 465px) {
+  .Toolbar {
+    font-size: 12px;
+  }
+  .Toolbar img {
+    height: 65%;
+  }
+}
