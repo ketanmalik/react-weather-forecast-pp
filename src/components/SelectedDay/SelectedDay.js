@@ -1,5 +1,4 @@
 import React from "react";
-
 import getImageCode from "../../assets/imageCodes/imageCodes";
 import classes from "./SelectedDay.module.css";
 

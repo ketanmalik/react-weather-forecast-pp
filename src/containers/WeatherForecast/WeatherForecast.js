@@ -73,18 +73,15 @@ class WeatherForecast extends Component {
             "," +
             weatherInfo[key].weather[0].main;
           updated = true;
-          console.log("if", key);
         }
       } else {
         date = new Date(tempDateArr[0], tempDateArr[1] - 1, tempDateArr[2]);
         i += 1;
         updated = false;
-        console.log(date.toDateString(), tempDate.toDateString(), i);
       }
       return null;
     });
     this.setState({ briefWeatherInfo: briefWeatherInfo });
-    console.log(briefWeatherInfo);
   };
 
   render() {
