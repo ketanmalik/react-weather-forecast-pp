@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux/Aux";
+import LocationInput from "../../components/LocationInput/LocationInput";
 import SelectedDay from "../../components/SelectedDay/SelectedDay";
 import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
@@ -14,7 +15,8 @@ class WeatherForecast extends Component {
     weatherInfo: null,
     err: null,
     briefWeatherInfo: null,
-    safeToProceed: false
+    safeToProceed: false,
+    stateSelected: null
   };
 
   componentDidMount() {
@@ -84,6 +86,11 @@ class WeatherForecast extends Component {
     this.setState({ briefWeatherInfo: briefWeatherInfo });
   };
 
+  stateHandler = stateCode => {
+    console.log("this is the State code:" + stateCode);
+    this.setState({ stateSelected: stateCode });
+  };
+
   render() {
     let dayBanner = null;
     if (this.state.dates) {
@@ -124,7 +131,10 @@ class WeatherForecast extends Component {
       this.state.selectedDay &&
       this.state.weatherInfo &&
       this.state.safeToProceed ? (
-        <Aux>
+        <div className={classes.Wrapper}>
+          <div className={classes.LocationInputWrapper}>
+            <LocationInput changed={this.stateHandler} />
+          </div>
           <div className={classes.LeftWrapper}>
             <SelectedDay
               day={this.state.dates[this.state.selectedDay]}
@@ -139,7 +149,7 @@ class WeatherForecast extends Component {
               {detailedView}
             </div>
           </div>
-        </Aux>
+        </div>
       ) : null
     ) : null;
   }

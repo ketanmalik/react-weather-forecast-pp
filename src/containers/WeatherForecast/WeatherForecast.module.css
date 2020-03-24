@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
+.Wrapper {
+  width: 90%;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+.LocationInputWrapper {
+  font-family: "Montserrat";
+  animation: slide-left 2s;
+  animation-fill-mode: forwards;
+  text-align: center;
+  font-weight: bold;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+}
 .LeftWrapper {
   font-family: "Montserrat";
   float: left;
@@ -16,9 +31,10 @@
 .RightWrapper {
   font-family: "Montserrat";
   float: right;
-  padding: 80px 100px 0px 50px;
+  padding: 65px 100px 0px 50px;
   animation: slide-right 2s;
   animation-fill-mode: forwards;
+  width: 35%;
 }
 
 .RightWrapper h1 {
@@ -49,6 +65,16 @@
   }
   100% {
     margin-right: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    margin-left: 30px;
     opacity: 1;
   }
 }

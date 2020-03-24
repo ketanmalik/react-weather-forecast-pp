@@ -23,15 +23,13 @@ const detailedView = props => {
         {temp}
         <sup>o</sup>
       </span>
-      <span>
-        <i>
-          {props.info.weather[0].description}, feels like: {feelsLikeTemp}&nbsp;
-          <sup>o</sup>F
-        </i>
+      <span className={classes.Information}>
+        <i>{props.info.weather[0].description}</i>
       </span>
       <p>
-        wind: {props.info.wind["speed"]} mph, clouds: {props.info.clouds["all"]}
-        %, pressure: {props.info.main["pressure"]} hpa
+        wind: {props.info.wind["speed"]} mph, , feels like: {feelsLikeTemp}
+        &nbsp;
+        <sup>o</sup>F, pressure: {props.info.main["pressure"]} hpa
       </p>
       {/* <hr /> */}
     </div>
