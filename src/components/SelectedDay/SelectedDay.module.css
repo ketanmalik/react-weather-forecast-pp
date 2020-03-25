@@ -1,6 +1,6 @@
 .Wrapper {
   margin-bottom: 50px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .Wrapper h1 {
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 465px) {
   .Wrapper {
-    font-size: 15px;
+    font-size: 10px;
   }
 
   .Wrapper img {
@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 320px) {
   .Wrapper {
-    font-size: 10px;
+    font-size: 5px;
   }
 
   .Wrapper img {

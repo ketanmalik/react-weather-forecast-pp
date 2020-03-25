@@ -16,7 +16,9 @@ class WeatherForecast extends Component {
     err: null,
     briefWeatherInfo: null,
     safeToProceed: false,
-    stateSelected: null
+    stateSelected: null,
+    city: "",
+    state: ""
   };
 
   componentDidMount() {
@@ -87,8 +89,46 @@ class WeatherForecast extends Component {
   };
 
   stateHandler = stateCode => {
-    console.log("this is the State code:" + stateCode);
+    console.log("state: " + stateCode);
     this.setState({ stateSelected: stateCode });
+  };
+
+  cityHandler = event => {
+    console.log("city: " + event.target.value);
+    this.setState({ city: event.target.value });
+  };
+
+  submitButtonHandler = e => {
+    e.preventDefault();
+    const city = this.state.city;
+    const state = this.state.state;
+    let url =
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "," +
+      state +
+      "&appid=e73382b0a345da45c83279f93d8b4615";
+
+    axios.get(url).then(resp => {
+      let id = resp.data.id;
+      console.log(resp, id);
+      let url =
+        "http://api.openweathermap.org/data/2.5/forecast?id=" +
+        id +
+        "&APPID=e73382b0a345da45c83279f93d8b4615";
+      console.log(url);
+      axios
+        .get(url)
+        .then(res => {
+          console.log(res);
+          this.setState({ weatherInfo: res.data.list });
+          this.setDates();
+          this.setState({ selectedDay: "Day0" });
+          this.setBriefWeatherInfo();
+          this.setState({ safeToProceed: true });
+        })
+        .catch(err => this.setState({ err: err }));
+    });
   };
 
   render() {
@@ -131,9 +171,14 @@ class WeatherForecast extends Component {
       this.state.selectedDay &&
       this.state.weatherInfo &&
       this.state.safeToProceed ? (
-        <div className={classes.Wrapper}>
+        <Aux>
           <div className={classes.LocationInputWrapper}>
-            <LocationInput changed={this.stateHandler} />
+            <LocationInput
+              city={this.cityHandler}
+              currCity={this.state.city}
+              state={this.stateHandler}
+              submitted={this.submitButtonHandler}
+            />
           </div>
           <div className={classes.LeftWrapper}>
             <SelectedDay
@@ -149,7 +194,7 @@ class WeatherForecast extends Component {
               {detailedView}
             </div>
           </div>
-        </div>
+        </Aux>
       ) : null
     ) : null;
   }

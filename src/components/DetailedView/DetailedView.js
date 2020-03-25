@@ -3,10 +3,8 @@ import getImageCode from "../../assets/imageCodes/imageCodes";
 import classes from "./DetailedView.module.css";
 
 const detailedView = props => {
-  console.log(props);
   const time = props.info.dt_txt.split(" ")[1].split(":");
   let imgCode = null;
-  console.log(props.info.weather[0].description);
   imgCode = getImageCode(props.info.weather[0].main);
   let temp = props.info.main["temp"];
   temp = ((temp - 273.15) * 1.8 + 32).toFixed(2);
