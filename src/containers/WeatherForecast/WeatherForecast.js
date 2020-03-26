@@ -5,6 +5,7 @@ import SelectedDay from "../../components/SelectedDay/SelectedDay";
 import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
 import DetailedView from "../../components/DetailedView/DetailedView";
+import BackDrop from "../../components/BackDrop/BackDrop";
 import classes from "./WeatherForecast.module.css";
 
 class WeatherForecast extends Component {
@@ -17,8 +18,7 @@ class WeatherForecast extends Component {
     briefWeatherInfo: null,
     safeToProceed: false,
     stateSelected: null,
-    city: "",
-    state: ""
+    city: ""
   };
 
   componentDidMount() {
@@ -88,13 +88,7 @@ class WeatherForecast extends Component {
     this.setState({ briefWeatherInfo: briefWeatherInfo });
   };
 
-  stateHandler = stateCode => {
-    console.log("state: " + stateCode);
-    this.setState({ stateSelected: stateCode });
-  };
-
   cityHandler = event => {
-    console.log("city: " + event.target.value);
     this.setState({ city: event.target.value });
   };
 
@@ -102,33 +96,42 @@ class WeatherForecast extends Component {
     e.preventDefault();
     const city = this.state.city;
     const state = this.state.state;
-    let url =
+    let url1 =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
       "," +
       state +
       "&appid=e73382b0a345da45c83279f93d8b4615";
 
-    axios.get(url).then(resp => {
-      let id = resp.data.id;
-      console.log(resp, id);
-      let url =
-        "http://api.openweathermap.org/data/2.5/forecast?id=" +
-        id +
-        "&APPID=e73382b0a345da45c83279f93d8b4615";
-      console.log(url);
-      axios
-        .get(url)
-        .then(res => {
-          console.log(res);
-          this.setState({ weatherInfo: res.data.list });
-          this.setDates();
-          this.setState({ selectedDay: "Day0" });
-          this.setBriefWeatherInfo();
-          this.setState({ safeToProceed: true });
-        })
-        .catch(err => this.setState({ err: err }));
-    });
+    axios
+      .get(url1)
+      .then(resp => {
+        console.log(resp);
+        let id = resp.data.id;
+        let url =
+          "http://api.openweathermap.org/data/2.5/forecast?id=" +
+          id +
+          "&APPID=e73382b0a345da45c83279f93d8b4615";
+        axios
+          .get(url)
+          .then(res => {
+            this.setState({ weatherInfo: res.data.list });
+            this.setDates();
+            this.setState({ selectedDay: "Day0" });
+            this.setBriefWeatherInfo();
+            this.setState({ safeToProceed: true });
+          })
+          .catch(err => this.setState({ err: err }));
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ err: err });
+      });
+  };
+
+  unmountBackDrop = () => {
+    this.setState({ err: null });
+    console.log("error");
   };
 
   render() {
@@ -172,11 +175,11 @@ class WeatherForecast extends Component {
       this.state.weatherInfo &&
       this.state.safeToProceed ? (
         <Aux>
+          {this.state.err ? <BackDrop unmount={this.unmountBackDrop} /> : null}
           <div className={classes.LocationInputWrapper}>
             <LocationInput
               city={this.cityHandler}
               currCity={this.state.city}
-              state={this.stateHandler}
               submitted={this.submitButtonHandler}
             />
           </div>

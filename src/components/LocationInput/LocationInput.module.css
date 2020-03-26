@@ -1,1 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+.CityInput {
+  height: 2em;
+  width: 15em;
+}
+
+.SubmitButton {
+  background-color: transparent;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 5px;
+  margin-left: 3em;
+  width: 5em;
+  border-radius: 10px;
+}

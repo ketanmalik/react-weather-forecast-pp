@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SelectUSState from "react-select-us-states";
+import classes from "./LocationInput.module.css";
 
 class LocationInput extends Component {
   render() {
@@ -10,19 +10,18 @@ class LocationInput extends Component {
             <label htmlFor="city">
               Enter City: &nbsp;&nbsp;
               <input
+                className={classes.CityInput}
                 type="text"
                 id="city"
                 value={this.props.currCity}
                 onChange={e => this.props.city(e)}
               />
             </label>
-            &nbsp;&nbsp; Select a state:&nbsp;&nbsp;
-            <SelectUSState
-              id="myId"
-              className="myClassName"
-              onChange={this.props.state}
+            <input
+              className={classes.SubmitButton}
+              type="submit"
+              value="Submit"
             />
-            <input type="submit" value="Submit" />
           </p>
         </form>
       </div>
