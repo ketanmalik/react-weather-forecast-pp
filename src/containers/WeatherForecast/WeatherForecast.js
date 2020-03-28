@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux/Aux";
+import LocationInput from "../../components/LocationInput/LocationInput";
 import SelectedDay from "../../components/SelectedDay/SelectedDay";
 import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
 import DetailedView from "../../components/DetailedView/DetailedView";
+import BackDrop from "../../components/BackDrop/BackDrop";
 import classes from "./WeatherForecast.module.css";
 
 class WeatherForecast extends Component {
@@ -14,7 +16,10 @@ class WeatherForecast extends Component {
     weatherInfo: null,
     err: null,
     briefWeatherInfo: null,
-    safeToProceed: false
+    safeToProceed: false,
+    stateSelected: null,
+    city: "Boston",
+    loading: false
   };
 
   componentDidMount() {
@@ -84,6 +89,59 @@ class WeatherForecast extends Component {
     this.setState({ briefWeatherInfo: briefWeatherInfo });
   };
 
+  cityHandler = event => {
+    this.setState({ city: event.target.value });
+  };
+
+  submitButtonHandler = e => {
+    e.preventDefault();
+    const city = this.state.city;
+    if (city.trim() === "" || city.trim() === null) {
+      this.setState({ err: true });
+      return;
+    }
+    let url1 =
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=e73382b0a345da45c83279f93d8b4615";
+
+    this.setState({ loading: true });
+    axios
+      .get(url1)
+      .then(resp => {
+        console.log(resp);
+        let id = resp.data.id;
+        let url =
+          "http://api.openweathermap.org/data/2.5/forecast?id=" +
+          id +
+          "&APPID=e73382b0a345da45c83279f93d8b4615";
+        axios
+          .get(url)
+          .then(res => {
+            this.setState({ loading: false });
+            this.setState({ weatherInfo: res.data.list });
+            this.setDates();
+            this.setState({ selectedDay: "Day0" });
+            this.setBriefWeatherInfo();
+            this.setState({ safeToProceed: true });
+          })
+          .catch(err => {
+            this.setState({ loading: false });
+            this.setState({ err: err });
+          });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
+        this.setState({ err: err });
+      });
+  };
+
+  unmountBackDrop = () => {
+    this.setState({ err: null });
+    console.log("error");
+  };
+
   render() {
     let dayBanner = null;
     if (this.state.dates) {
@@ -125,6 +183,15 @@ class WeatherForecast extends Component {
       this.state.weatherInfo &&
       this.state.safeToProceed ? (
         <Aux>
+          {this.state.err ? <BackDrop unmount={this.unmountBackDrop} /> : null}
+          <div className={classes.LocationInputWrapper}>
+            <LocationInput
+              city={this.cityHandler}
+              currCity={this.state.city}
+              submitted={this.submitButtonHandler}
+              loading={this.state.loading}
+            />
+          </div>
           <div className={classes.LeftWrapper}>
             <SelectedDay
               day={this.state.dates[this.state.selectedDay]}
