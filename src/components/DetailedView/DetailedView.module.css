@@ -14,8 +14,22 @@
   margin-right: 2em;
 }
 
+.Information {
+  /* color: red; */
+}
+
 .Wrapper:after {
   content: " ";
   display: block;
   border-bottom: 2px solid #6f6e6e;
+}
+
+@media screen and (max-width: 945px) {
+  .Temperature {
+    margin-right: 1em;
+    font-size: 12px;
+  }
+  .Wrapper img {
+    margin-right: 1em;
+  }
 }

@@ -3,10 +3,8 @@ import getImageCode from "../../assets/imageCodes/imageCodes";
 import classes from "./DetailedView.module.css";
 
 const detailedView = props => {
-  console.log(props);
   const time = props.info.dt_txt.split(" ")[1].split(":");
   let imgCode = null;
-  console.log(props.info.weather[0].description);
   imgCode = getImageCode(props.info.weather[0].main);
   let temp = props.info.main["temp"];
   temp = ((temp - 273.15) * 1.8 + 32).toFixed(2);
@@ -23,15 +21,13 @@ const detailedView = props => {
         {temp}
         <sup>o</sup>
       </span>
-      <span>
-        <i>
-          {props.info.weather[0].description}, feels like: {feelsLikeTemp}&nbsp;
-          <sup>o</sup>F
-        </i>
+      <span className={classes.Information}>
+        <i>{props.info.weather[0].description}</i>
       </span>
       <p>
-        wind: {props.info.wind["speed"]} mph, clouds: {props.info.clouds["all"]}
-        %, pressure: {props.info.main["pressure"]} hpa
+        wind: {props.info.wind["speed"]} mph, , feels like: {feelsLikeTemp}
+        &nbsp;
+        <sup>o</sup>F, pressure: {props.info.main["pressure"]} hpa
       </p>
       {/* <hr /> */}
     </div>
