@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import Aux from "../../hoc/Aux/Aux";
 import LocationInput from "../../components/LocationInput/LocationInput";
 import SelectedDay from "../../components/SelectedDay/SelectedDay";
@@ -6,6 +7,7 @@ import DayBanner from "../../components/DayBanner/DayBanner";
 import axios from "axios";
 import DetailedView from "../../components/DetailedView/DetailedView";
 import BackDrop from "../../components/BackDrop/BackDrop";
+import urlCodes from "../../assets/urlCodes/urlCodes";
 import classes from "./WeatherForecast.module.css";
 
 class WeatherForecast extends Component {
@@ -139,7 +141,6 @@ class WeatherForecast extends Component {
 
   unmountBackDrop = () => {
     this.setState({ err: null });
-    console.log("error");
   };
 
   render() {
@@ -172,7 +173,22 @@ class WeatherForecast extends Component {
           dateArr[2]
         ).toDateString();
         if (date === dates[selectedDay]) {
-          return <DetailedView info={weatherInfo[key]} key={key} />;
+          const path = urlCodes(date.split(" ")[0].toLowerCase());
+          console.log("ss", path);
+          return (
+            <Route
+              key={key}
+              path={path}
+              render={props => (
+                <DetailedView
+                  {...props}
+                  info={weatherInfo[key]}
+                  key={key}
+                  path={path}
+                />
+              )}
+            />
+          );
         }
         return null;
       });

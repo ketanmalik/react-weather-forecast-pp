@@ -8,11 +8,7 @@ class BackDrop extends Component {
     }, 3500);
   }
   render() {
-    return (
-      <div className={classes.Modal}>
-        Please enter valid city and state name
-      </div>
-    );
+    return <div className={classes.Modal}>Please enter valid city name</div>;
   }
 }
 

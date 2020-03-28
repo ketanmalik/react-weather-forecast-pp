@@ -3,6 +3,7 @@ import getImageCode from "../../assets/imageCodes/imageCodes";
 import classes from "./DetailedView.module.css";
 
 const detailedView = props => {
+  console.log("ss");
   const time = props.info.dt_txt.split(" ")[1].split(":");
   let imgCode = null;
   imgCode = getImageCode(props.info.weather[0].main);
