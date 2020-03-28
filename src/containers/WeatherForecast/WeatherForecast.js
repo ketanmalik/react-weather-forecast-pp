@@ -18,7 +18,8 @@ class WeatherForecast extends Component {
     briefWeatherInfo: null,
     safeToProceed: false,
     stateSelected: null,
-    city: ""
+    city: "Boston",
+    loading: false
   };
 
   componentDidMount() {
@@ -95,14 +96,16 @@ class WeatherForecast extends Component {
   submitButtonHandler = e => {
     e.preventDefault();
     const city = this.state.city;
-    const state = this.state.state;
+    if (city.trim() === "" || city.trim() === null) {
+      this.setState({ err: true });
+      return;
+    }
     let url1 =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
-      "," +
-      state +
       "&appid=e73382b0a345da45c83279f93d8b4615";
 
+    this.setState({ loading: true });
     axios
       .get(url1)
       .then(resp => {
@@ -115,16 +118,21 @@ class WeatherForecast extends Component {
         axios
           .get(url)
           .then(res => {
+            this.setState({ loading: false });
             this.setState({ weatherInfo: res.data.list });
             this.setDates();
             this.setState({ selectedDay: "Day0" });
             this.setBriefWeatherInfo();
             this.setState({ safeToProceed: true });
           })
-          .catch(err => this.setState({ err: err }));
+          .catch(err => {
+            this.setState({ loading: false });
+            this.setState({ err: err });
+          });
       })
       .catch(err => {
         console.log(err);
+        this.setState({ loading: false });
         this.setState({ err: err });
       });
   };
@@ -181,6 +189,7 @@ class WeatherForecast extends Component {
               city={this.cityHandler}
               currCity={this.state.city}
               submitted={this.submitButtonHandler}
+              loading={this.state.loading}
             />
           </div>
           <div className={classes.LeftWrapper}>
