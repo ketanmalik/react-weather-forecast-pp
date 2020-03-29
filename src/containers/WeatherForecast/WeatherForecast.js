@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Aux from "../../hoc/Aux/Aux";
 import LocationInput from "../../components/LocationInput/LocationInput";
 import SelectedDay from "../../components/SelectedDay/SelectedDay";
@@ -37,6 +37,7 @@ class WeatherForecast extends Component {
         this.setState({ selectedDay: "Day0" });
         this.setBriefWeatherInfo();
         this.setState({ safeToProceed: true });
+        this.setPath();
       })
       .catch(err => this.setState({ err: err }));
   }
@@ -143,6 +144,18 @@ class WeatherForecast extends Component {
     this.setState({ err: null });
   };
 
+  setPath = () => {
+    let url = window.location.href.split("/");
+    let day = url[url.length - 1].substring(0, 3);
+    const dates = { ...this.state.dates };
+    Object.keys(dates).map(key => {
+      if (dates[key].split(" ")[0].toLowerCase() === day) {
+        this.setState({ selectedDay: key });
+      }
+      return null;
+    });
+  };
+
   render() {
     let dayBanner = null;
     if (this.state.dates) {
@@ -162,6 +175,7 @@ class WeatherForecast extends Component {
 
     let detailedView = null;
     if (this.state.safeToProceed) {
+      console.log(this.state);
       const weatherInfo = { ...this.state.weatherInfo };
       const dates = { ...this.state.dates };
       const selectedDay = this.state.selectedDay;
@@ -175,20 +189,26 @@ class WeatherForecast extends Component {
         if (date === dates[selectedDay]) {
           const path = urlCodes(date.split(" ")[0].toLowerCase());
           console.log("ss", path);
-          return (
-            <Route
-              key={key}
-              path={path}
-              render={props => (
-                <DetailedView
-                  {...props}
-                  info={weatherInfo[key]}
-                  key={key}
-                  path={path}
-                />
-              )}
-            />
-          );
+          if (window.location.href === "http://localhost:3000/") {
+            return (
+              <DetailedView info={weatherInfo[key]} key={key} path={path} />
+            );
+          } else {
+            return (
+              <Route
+                key={key}
+                path={path}
+                render={props => (
+                  <DetailedView
+                    {...props}
+                    info={weatherInfo[key]}
+                    key={key}
+                    path={path}
+                  />
+                )}
+              />
+            );
+          }
         }
         return null;
       });
@@ -228,4 +248,4 @@ class WeatherForecast extends Component {
   }
 }
 
-export default WeatherForecast;
+export default withRouter(WeatherForecast);

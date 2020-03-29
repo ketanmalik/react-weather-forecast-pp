@@ -160,7 +160,7 @@
 
 @media screen and (max-width: 801px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 140px;
+    padding: 15px 0px 0px 140px;
     width: 80%;
   }
   .LeftWrapper h1 {
@@ -177,7 +177,7 @@
 
 @media screen and (max-width: 650px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 60px;
+    padding: 15px 0px 0px 60px;
     width: 80%;
   }
   .LeftWrapper h1 {

@@ -2,6 +2,10 @@
   font-weight: bold;
 }
 
+.Wrapper {
+  margin-bottom: 2em;
+}
+
 .Wrapper img {
   height: 30px;
   margin-right: 2em;
@@ -14,15 +18,11 @@
   margin-right: 2em;
 }
 
-.Information {
-  /* color: red; */
-}
-
-.Wrapper:after {
+/* .Wrapper:after {
   content: " ";
   display: block;
   border-bottom: 2px solid #6f6e6e;
-}
+} */
 
 @media screen and (max-width: 945px) {
   .Temperature {
