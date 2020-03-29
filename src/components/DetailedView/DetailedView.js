@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Aux from "../../hoc/Aux/Aux";
 import getImageCode from "../../assets/imageCodes/imageCodes";
 import Divider from "@material-ui/core/Divider";
@@ -39,4 +40,4 @@ const detailedView = props => {
   );
 };
 
-export default detailedView;
+export default withRouter(detailedView);
