@@ -20,7 +20,7 @@
   margin-top: 2em;
   font-family: "Montserrat";
   float: left;
-  padding: 10px 0px 0px 90px;
+  padding: 15px 0px 0px 90px;
   animation: slide-left 2s;
   animation-fill-mode: forwards;
   width: 40%;
@@ -36,7 +36,7 @@
   margin-top: 2em;
   font-family: "Montserrat";
   float: right;
-  padding: 65px 100px 0px 50px;
+  padding: 85px 100px 0px 50px;
   animation: slide-right 2s;
   animation-fill-mode: forwards;
   width: 35%;
@@ -46,14 +46,6 @@
 
 .RightWrapper h1 {
   font-size: 30px;
-}
-
-.RightWrapper hr {
-  border: none;
-  height: 1px;
-  /* Set the hr color */
-  color: #333; /* old IE */
-  background-color: #333; /* Modern Browsers */
 }
 
 @keyframes slide-left {
@@ -88,22 +80,22 @@
 
 @media screen and (min-width: 1246px) and (max-width: 1320px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 10px;
+    padding: 15px 0px 0px 10px;
   }
   .RightWrapper {
-    padding: 80px 20px 0px 50px;
+    padding: 100px 20px 0px 50px;
   }
 }
 
 @media screen and (max-width: 1245px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 10px;
+    padding: 15px 0px 0px 10px;
   }
   .LeftWrapper h1 {
     font-size: 40px;
   }
   .RightWrapper {
-    padding: 80px 20px 0px 50px;
+    padding: 100px 20px 0px 50px;
   }
   .RightWrapper h1 {
     font-size: 40px;
@@ -112,13 +104,13 @@
 
 @media screen and (max-width: 1046px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 10px;
+    padding: 15px 0px 0px 10px;
   }
   .LeftWrapper h1 {
     font-size: 30px;
   }
   .RightWrapper {
-    padding: 80px 20px 0px 50px;
+    padding: 100px 20px 0px 50px;
     width: 45%;
   }
   .RightWrapper h1 {
@@ -128,13 +120,13 @@
 
 @media screen and (max-width: 945px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 10px;
+    padding: 15px 0px 0px 10px;
   }
   .LeftWrapper h1 {
     font-size: 30px;
   }
   .RightWrapper {
-    padding: 80px 20px 0px 50px;
+    padding: 100px 20px 0px 50px;
     width: 40%;
   }
   .RightWrapper h1 {
@@ -144,13 +136,13 @@
 
 @media screen and (max-width: 847px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 10px;
+    padding: 15px 0px 0px 10px;
   }
   .LeftWrapper h1 {
     font-size: 25px;
   }
   .RightWrapper {
-    padding: 80px 20px 0px 50px;
+    padding: 100px 20px 0px 50px;
     width: 40%;
   }
   .RightWrapper h1 {
@@ -160,14 +152,14 @@
 
 @media screen and (max-width: 801px) {
   .LeftWrapper {
-    padding: 15px 0px 0px 140px;
+    padding: 20px 0px 0px 140px;
     width: 80%;
   }
   .LeftWrapper h1 {
     font-size: 25px;
   }
   .RightWrapper {
-    padding: 80px 45px 0px 50px;
+    padding: 100px 45px 0px 50px;
     width: 80%;
   }
   .RightWrapper h1 {
@@ -177,14 +169,14 @@
 
 @media screen and (max-width: 650px) {
   .LeftWrapper {
-    padding: 15px 0px 0px 60px;
+    padding: 20px 0px 0px 60px;
     width: 80%;
   }
   .LeftWrapper h1 {
     font-size: 25px;
   }
   .RightWrapper {
-    padding: 80px 25px 0px 50px;
+    padding: 100px 25px 0px 50px;
     width: 80%;
   }
   .RightWrapper h1 {
@@ -193,14 +185,14 @@
 }
 @media screen and (max-width: 465px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 40px;
+    padding: 15px 0px 0px 40px;
     width: 80%;
   }
   .LeftWrapper h1 {
     font-size: 20px;
   }
   .RightWrapper {
-    padding: 80px 25px 0px 50px;
+    padding: 100px 25px 0px 50px;
     width: 80%;
   }
   .RightWrapper h1 {
@@ -209,14 +201,14 @@
 }
 @media screen and (max-width: 420px) {
   .LeftWrapper {
-    padding: 10px 0px 0px 40px;
+    padding: 15px 0px 0px 40px;
     width: 80%;
   }
   .LeftWrapper h1 {
     font-size: 15px;
   }
   .RightWrapper {
-    padding: 80px 25px 0px 50px;
+    padding: 100px 25px 0px 50px;
     font-size: 9px;
     width: 80%;
   }

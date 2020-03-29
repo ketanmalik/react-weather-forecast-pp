@@ -33,7 +33,7 @@ const detailedView = props => {
           &nbsp;
           <sup>o</sup>F, pressure: {props.info.main["pressure"]} hpa
         </p>
-        <Divider variant="middle" />
+        <Divider style={{ backgroundColor: "black" }} variant="middle" />
       </div>
     </Aux>
   );

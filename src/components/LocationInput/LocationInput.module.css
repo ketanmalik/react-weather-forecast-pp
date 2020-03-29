@@ -3,6 +3,7 @@
 .CityInput {
   height: 2em;
   width: 15em;
+  font-size: 15px;
 }
 
 .SubmitButton {
