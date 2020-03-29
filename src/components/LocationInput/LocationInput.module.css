@@ -13,4 +13,11 @@
   margin-left: 3em;
   width: 5em;
   border-radius: 10px;
+  cursor: pointer;
+}
+.SubmitButton:hover {
+  background-color: #ccc;
+}
+.SubmitButton:focus {
+  outline: none;
 }
